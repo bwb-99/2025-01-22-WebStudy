@@ -1,0 +1,47 @@
+<!-- 
+    문자 선택자
+    :befor
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/*
+  새글 특가상품..
+  
+  HTML / CSS => 사용자 정의가 없다
+         --- 지정된 속성 이용 => 값
+  ---- 지정된 태그만 사용 (사용자 정의 :  속성은 가능)
+  
+  자바스크립트 / 자바  / 오라클 => 사용자 정의가 존재
+                     MyBatis / JPA
+  => 같은 출력
+*/
+li.new::after{
+   content:"NEW";
+   width:100px;
+   hight: 30px;
+   border-radius: 50px;
+   background: red;
+}
+li.new1::after{
+   content:"NEW";
+   width:100px;
+   hight: 30px;
+   border-radius: 50px;
+   background: red;
+}
+</style>
+</head>
+<body>
+   <ul>
+      <li calss="new">상품 1</li>
+      <li calss="new">상품 2</li>
+      <li>상품 3</li>
+   
+   
+   </ul>
+</body>
+</html>
