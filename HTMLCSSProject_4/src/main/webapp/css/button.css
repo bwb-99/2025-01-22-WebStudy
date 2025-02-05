@@ -1,0 +1,33 @@
+@charset "UTF-8";
+span{
+	  width:100px;
+	  height:30px;
+	  display: blcak
+}
+.danger{
+	border:1px solid red;
+	background-color: red;
+	border-radius: 20px;
+}
+.info{
+	border:1px solid blue;
+	background-color: blue;
+	border-radius: 20px;
+
+}
+.primary{
+	border:1px solid green;
+	background-color: green;
+	border-radius: 20px;
+	
+}
+.success{
+	border:1px solid orange;
+	background-color: opange;
+	border-radius: 20px;
+}
+.warning{
+	border:1px solid rgb(255,158,128);
+	background-color: rgb(255,158,128);
+	border-radius: 20px;
+}

@@ -113,7 +113,79 @@ public class MusicDAO {
 			return total;
 		}
 		
-		// 상세보기 
+		// 상세보기
+		public MusicVO musicDetailData(int mno)
+		{
+			MusicVO vo=new MusicVO();
+			try
+			{
+				getConnection();
+				String sql="UPDATE genie_music SET "
+						  +"hit=hit+1 "
+						  +"WHERE mno="+mno;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				
+				//mainpage => 공동작업
+				//	private int mno,cno,idcrement,hit;
+				//  private String title,singer,album,poster,state,key;
+				
+				sql="SELECT title,singer,album,poster,state,key,cno,idcrement,hit "
+				    +"FROM genie_music "
+					+"WHERE mno="+mno;
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				
+				vo.setTitle(rs.getString("title"));
+				vo.setSinger(rs.getString("singer"));
+				vo.setAlbum(rs.getString("album"));
+				vo.setPoster(rs.getString("poster"));
+				vo.setState(rs.getString("state"));
+				vo.setKey(rs.getString("key"));
+				vo.setCno(rs.getInt("cno"));
+				vo.setIdcrement(rs.getInt("idcrement"));
+				vo.setHit(rs.getInt("hit"));
+				rs.close();
+			}
+			catch(Exception ex) 
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				disConnection();
+			}
+			return vo;
+		}
+		// cookie 데이터
+		public MusicVO musicCookieData(int mno)
+		{
+			MusicVO vo=new MusicVO();
+			try
+			{
+				getConnection();
+				String sql="SELECT mno,title,singer,poster "
+						  +"FROM genie_music "
+						  +"WHERE mno="+mno;
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				vo.setMno(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setSinger(rs.getString(3));
+				vo.setPoster(rs.getString(4));
+				rs.close();
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				disConnection();
+			}
+			return vo;
+		}
 		
 
 	}

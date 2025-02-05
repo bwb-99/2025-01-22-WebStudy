@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let i=0;
+$(function(){ //window.onload=function(){} => main
+		$('.dataTr').click(function(){
+		    if(i==0)
+		    {
+		    	i=1;
+		    	$('#content').show();
+		    }
+		    else
+		    {
+		    	i=0;
+		    	$('#content').hide();
+		    }
+		})
+})
+</script>
+</head>
+<body>
+    <table class="table_content" width=700>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>이름</th>
+        <th>작성일</th>
+        <th>조회수</th>
+      </tr>
+       <tr class="dataTr">
+         <td class="text-center">1</td>
+         <td>AI 시장에서 승자가 될 기업은 고객의 신뢰를 얻는 곳이다. 하지만 오픈AI는 그와 반대되는 일을 하고 있다.</td>
+         <td class="text-center">홍길동</td>
+         <td class="text-center">2025-02-05</td>
+         <td class="text-center">10</td>
+       </tr>
+       <tr id="content" style="display">
+         <td colspan="5" height="200" class="text-left"
+           valign="top">
+           <pre>
+            지난 2주 동안 딥시크(DeepSeek)는 LLM을 확장하는 훨씬 더 효율적인 방법을 도입함으로써 생성형 AI에 대한 실리콘밸리의 기존 인식을 뒤흔들었다. 
+            엔비디아 GPU를 대량 구매할 수십억 달러의 벤처 자금이 없었던 딥시크는 제한된 자원 속에서 해결책을 찾아야 했다. 
+            리플렉시비티(Reflexivity) 사장 주세페 세테는 “딥시크는 각 쿼리마다 가장 관련성 높은 부분만 활성화하는 방식을 익혔다”라고 설명했다.
+           </pre>
+           </td>
+       </tr>
+    </table>
+</body>
+</html>
