@@ -113,6 +113,7 @@ public class MusicList extends HttpServlet {
 			out.println("<img src="+cvo.getPoster()+" style=\"width:100px;height:100px\"class=img-rounded title="+cvo.getTitle()+">");
 			out.println("<a>");
 		}
+		
 		out.println("</div>");
 		out.println("</div>");
 		out.println("</body>");
