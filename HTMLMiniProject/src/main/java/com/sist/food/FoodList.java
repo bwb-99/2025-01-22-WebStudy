@@ -98,7 +98,7 @@ public class FoodList extends HttpServlet {
 		
 		if(endPage<totalpage)
 		{
-		  out.println("<li><a href=\"FoodList?page="+(endPage+1)+"\">&gt;</a></li>");
+		  out.println("<li><a href=\"MainServlet?page="+(endPage+1)+"\">&gt;</a></li>");
 		}
 		out.println("</ul>");
 		out.println("</div>");
@@ -123,11 +123,10 @@ public class FoodList extends HttpServlet {
 			}
 		}
 		/*
-		 * 	MainServlet?mode=1 => MainServlet => FoodList
-		 * 	MainServlet?mode=2 => FoodDetail
-		 * 	MainServlet?mode=3 => FoodTypeFind
-		 * 	MainServlet?mode=4 => FoodFind
-		 * 
+		 *   MainServlet?mode=1  => MainServlet => FoodList
+		 *   MainServlet?mode=2  => FoodDetail
+		 *   MainServlet?mode=3  => FoodTypeFind
+		 *   MainServlet?mode=4  => FoodFind
 		 */
 		for(int i=0;i<cList.size();i++)
 		{

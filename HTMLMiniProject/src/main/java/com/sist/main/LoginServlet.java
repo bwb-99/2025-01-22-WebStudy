@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.sist.dao.*;
-import com.sist.vo.*;
+import com.sist.dao.FoodDAO;
+import com.sist.vo.MemberVO;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -22,8 +22,9 @@ public class LoginServlet extends HttpServlet {
 		session.invalidate();
 		response.sendRedirect("MainServlet");
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;MainServlet=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		
 		String id=request.getParameter("id");
@@ -35,11 +36,10 @@ public class LoginServlet extends HttpServlet {
 		if(vo.getMsg().equals("OK"))
 		{
 			HttpSession session=request.getSession();
-			session.setAttribute("id",vo.getId());
-			session.setAttribute("name",vo.getName());
+			session.setAttribute("id", vo.getId());
+			session.setAttribute("name", vo.getName());
 			session.setAttribute("sex", vo.getSex());
-			
-			
+			// 화면 이동 
 			response.sendRedirect("MainServlet");
 		}
 		else if(vo.getMsg().equals("NOID"))
