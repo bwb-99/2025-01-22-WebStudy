@@ -105,20 +105,20 @@ public class FoodTypeFind extends HttpServlet {
 		// startPage = 1 , 11 , 21
 		if(startPage>1)
 		{
-		  out.println("<li><a href=\"FoodTypeFind?type="+type+"&page="+(startPage-1)+"\">&lt;</a></li>");
+		  out.println("<li><a href=\"MainServlet?mode=3&type="+type+"&page="+(startPage-1)+"\">&lt;</a></li>");
 		}
 		
 		for(int i=startPage;i<=endPage;i++)
 		{
 		 if(i==curpage)
-		  out.println("<li class=active><a href=\"FoodTypeFind?type="+type+"&page="+i+"\">"+i+"</a></li>");
+		  out.println("<li class=active><a href=\"MainServlet?mode=3&type="+type+"&page="+i+"\">"+i+"</a></li>");
 		 else
-		  out.println("<li><a href=\"FoodTypeFind?type="+type+"&page="+i+"\">"+i+"</a></li>");
+		  out.println("<li><a href=\"MainServlet?mode=3&type="+type+"&page="+i+"\">"+i+"</a></li>");
 		}
 		
 		if(endPage<totalpage)
 		{
-		  out.println("<li><a href=\"FoodTypeFind?type="+type+"&page="+(endPage+1)+"\">&gt;</a></li>");
+		  out.println("<li><a href=\"MainServlet?mode=3&type="+type+"&page="+(endPage+1)+"\">&gt;</a></li>");
 		}
 		out.println("</ul>");
 	  

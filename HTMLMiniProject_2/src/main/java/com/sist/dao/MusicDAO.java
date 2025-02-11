@@ -265,7 +265,7 @@ public class MusicDAO {
 			  return total;
 		  }
 		// ?page= &col= &fd=
-		public List<MusicVO> MusicFind(int page, String col, String fd)
+		public List<MusicVO> MusicFind(int page, String col, String md)
 		{
 			
 			List<MusicVO> list=new ArrayList<MusicVO>();
@@ -284,7 +284,7 @@ public class MusicDAO {
 			  int start=(rowSize*page)-(rowSize-1);
 			  int end=rowSize*page;
 			  
-			  ps.setString(1, fd);
+			  ps.setString(1, md);
 			  ps.setInt(2, start);
 			  ps.setInt(3, end);
 			  
@@ -294,23 +294,141 @@ public class MusicDAO {
 				  MusicVO vo=new MusicVO();
 				  vo.setMno(rs.getInt(1));
 				  vo.setTitle(rs.getString(2));
-				  vo.setPoster(rs.getString(3));
-				  rs.close();
-				   
-				  
+				  vo.setSinger(rs.getString(3));
+				  vo.setAlbum(rs.getString(4));
+				  vo.setPoster(rs.getString(5));
+				  vo.setCno(rs.getInt(6));
+				  list.add(vo);
+
 			  }
+			  rs.close();
 		}
 		catch(Exception ex)
 		{
-			
+			ex.printStackTrace();
 		}
 		finally
 		{
-			
+			disConnection();
 		}
 		return list;
+		}
 		
-	}
-}
+		public int musicFindTotalPage(String col,String md)
+		  {
+			  int total=0;
+			  try
+			  {
+				  getConnection();
+				  String sql="SELECT CEIL(COUNT(*)/20.0) "
+						    +"FROM genie_music "
+						    +"WHERE "+col+" LIKE '%'||?||'%'";
+				  ps=conn.prepareStatement(sql);
+				  ps.setString(1, md);
+				  ResultSet rs=ps.executeQuery();
+				  rs.next();
+				  total=rs.getInt(1);
+				  rs.close();
+			  }catch(Exception ex)
+			  {
+				  ex.printStackTrace();
+			  }
+			  finally
+			  {
+				  disConnection();
+			  }
+			  return total;
+		  }
+		//로그인
+		public MemberVO memberLogin(String id,String pwd)
+		  {
+			  MemberVO vo=new MemberVO();
+			  try
+			  {
+				  getConnection();
+				  String sql="SELECT COUNT(*) FROM member "
+						    +"WHERE id=?";
+				  ps=conn.prepareStatement(sql);
+				  // "no="+no
+				  // "id='"+id+"'" => ps.setString(1,id)
+				  ps.setString(1, id);
+				  ResultSet rs=ps.executeQuery();
+				  rs.next();
+				  int count=rs.getInt(1);
+				  rs.close();
+				  
+				  if(count==0)//ID가 없는 상태
+				  {
+					  vo.setMsg("NOID");
+				  }
+				  else // ID가 있는 상태 
+				  {
+					  sql="SELECT id,name,sex,pwd "
+					     +"FROM member "
+						 +"WHERE id=?";
+					  
+					  ps=conn.prepareStatement(sql);
+					  ps.setString(1, id);
+					  
+					  rs=ps.executeQuery();
+					  rs.next();
+					  vo.setId(rs.getString(1));
+					  vo.setName(rs.getString(2));
+					  vo.setSex(rs.getString(3));
+					  String db_pwd=rs.getString(4);
+					  if(db_pwd.equals(pwd))
+					  {
+						  vo.setMsg("OK");
+					  }
+					  else
+					  {
+						  vo.setMsg("NOPWD");
+					  }
+					  rs.close();
+				  }
+			  }catch(Exception ex)
+			  {
+				  ex.printStackTrace();
+			  }
+			  finally
+			  {
+				  disConnection();
+			  }
+			  return vo;
+		  }
+		public List<MusicVO> musicHitTop10()
+		  {
+			  List<MusicVO> list=
+					  new ArrayList<MusicVO>();
+			  try
+			  {
+				  getConnection();
+				  String sql="SELECT mno,title,poster,hit,rownum "
+						    +"FROM (SELECT mno,title,poster,hit "
+						    +"FROM genie_music ORDER BY hit DESC) "
+						    +"WHERE rownum<=10";
+				  ps=conn.prepareStatement(sql);
+				  ResultSet rs=ps.executeQuery();
+				  while(rs.next())
+				  {
+					  MusicVO vo=new MusicVO();
+					  vo.setMno(rs.getInt(1));
+					  vo.setTitle(rs.getString(2));
+					  vo.setPoster(rs.getString(3));
+					  vo.setHit(rs.getInt(4));
+					  list.add(vo);
+				  }
+				  rs.close();
+			  }catch(Exception ex)
+			  {
+				  ex.printStackTrace();
+			  }
+			  finally
+			  {
+				  disConnection();
+			  }
+			  return list;
+		  }
+		}
 
 
