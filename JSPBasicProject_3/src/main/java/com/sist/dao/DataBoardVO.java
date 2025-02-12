@@ -1,24 +1,25 @@
 package com.sist.dao;
 import java.util.*;
-// JSP => Bean => 데이터를 모아서 관리 / 전송
+// JSP => Bean => 데이터를 모아서 관리 / 전송 
 // Spring => VO
 // Mybaits => DTO
-// 자료실 한개에 대한 정보만 가지고 있다
+// 자료실 한개에 대한 정보만 가지고 있다 
 /*
- *  1. 목록
- *     DataBoardVO 여러개 => List<DataBoardVO>
- *     => 검색
- *  2. 상세보기
- *     DataBoardVO
- *     
- *     SELECT
- *     INSERT / UPDATE / DELETE => void
+ *   1. 목록 
+ *      DataBoardVO 여러개 => List<DataBoardVO>
+ *      => 검색 
+ *   2. 상세보기 
+ *      DataBoardVO
+ *      
+ *      SELECT 
+ *      INSERT / UPDATE / DELETE => void 
+ * 
  */
 public class DataBoardVO {
-	private int no,hit,filesize;
-	private String name,subject,content,pwd,filename,dbday;
-	private Date regdate;  //=> 은닉화
-	public int getNo() {   //=>캡슐화
+    private int no,hit,filesize;
+    private String name,subject,content,pwd,filename,dbday;
+    private Date regdate;
+	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
@@ -78,5 +79,6 @@ public class DataBoardVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+	  
+  
 }
