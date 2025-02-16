@@ -16,14 +16,11 @@
         <li><a href="#"><img class="radius-10" src="../images/demo/slides/back3.jpg" style="width:978px;height:400px"></a></li>
       </ul>
     </div>
-
-  </div>
+    </div>
 </div>
-
 <div class="wrapper row3">
   <main class="container clear"> 
     <!-- main body --> 
-
     <ul class="nospace group btmspace-80">
       <li class="one_third first">
         <article class="service"><i class="icon fa fa-ambulance"></i>
@@ -47,9 +44,7 @@
         </article>
       </li>
     </ul>
-
     <h2 class="sectiontitle">Lorem Ipsum Dolor</h2>
-
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <li>
@@ -79,9 +74,7 @@
         </li>
       </ul>
     </div>
-    
     <h2 class="sectiontitle">Lorem Ipsum Dolor</h2>
-
     <ul class="nospace group">
       <li class="one_half first">
         <article><img class="imgl radius-10" src="../images/demo/100x100.gif" alt="">
@@ -96,7 +89,6 @@
         </article>
       </li>
     </ul>
-
     <!-- / main body -->
     <div class="clear"></div>
   </main>

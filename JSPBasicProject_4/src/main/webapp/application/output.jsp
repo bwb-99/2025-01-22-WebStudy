@@ -7,6 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
- <img src="../image/<%= request.%> %>" width=300 height="300">
+  <img src="../image/<%=request.getParameter("img") %>" width=300 height="300">
 </body>
-</html>

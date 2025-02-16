@@ -9,7 +9,6 @@
 <body>
 <div class="wrapper row1">
   <header id="header" class="clear"> 
-
     <div id="logo" class="fl_left">
       <h1><a href="index.html">Gravity</a></h1>
     </div>
@@ -19,13 +18,10 @@
         <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
       </ul>
     </div>
- 
-  </header>
+    </header>
 </div>
-
 <div class="wrapper row2">
   <nav id="mainav" class="clear"> 
-
     <ul class="clear">
       <li class="active"><a href="index.html">Home</a></li>
       <li><a class="drop" href="#">Pages</a>
@@ -51,8 +47,7 @@
       <li><a href="#">Link Text</a></li>
       <li><a href="#">Link Text</a></li>
     </ul>
-
-  </nav>
-</div> -->
+    </nav>
+</div>
 </body>
 </html>
