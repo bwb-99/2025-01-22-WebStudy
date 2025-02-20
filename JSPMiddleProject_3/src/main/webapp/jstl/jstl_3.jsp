@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <h3>자바 날짜 변환</h3>
+  <h3>자바 날짜 변환</h3>
   <%
      // TO_CHAR(date,'YYYY-MM-DD')
      Date date=new Date();
@@ -26,9 +26,9 @@
   %>
   <%= d.format(1234567) %>
   <h3>JSTL 숫자 변환</h3>
-  
+  <%--
       TO_CHAR(price,'L999,999')
-  
+   --%>
   <fmt:formatNumber value="${1234567 }" type="currency"/>
 </body>
 </html>

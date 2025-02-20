@@ -92,4 +92,17 @@ public class BoardDAO {
 		//데이터가 갱신
 		session.close();
 	}
+	// 상세보기
+	public static BoardVO boardDetailData(int no)
+	{
+		SqlSession session=ssf.openSession();
+		// 조회수
+		session.update("hitIncrement",no);
+		session.commit();
+		//데이터 가져오기
+		BoardVO vo=session.selectOne("boardDetailData,no");
+		//반환
+		session.close();
+		return vo;
+	}
 }

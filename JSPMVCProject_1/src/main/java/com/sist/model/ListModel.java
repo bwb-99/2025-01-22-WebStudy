@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
+import java.text.*;
 public class ListModel implements Model{
 
 	@Override
@@ -29,7 +30,10 @@ public class ListModel implements Model{
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		
+		String today=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		request.setAttribute("today", today);
+		
 		return "board/list.jsp";
 	}
 
-}
+}	
