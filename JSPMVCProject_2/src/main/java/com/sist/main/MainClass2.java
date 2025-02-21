@@ -7,12 +7,12 @@ public class MainClass2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		List<String> list=new ArrayList<String>();
-		list.add("com.sist.modle.BoardModel");
+		list.add("com.sist.model.BoardModel");
 		list.add("com.sist.model.FoodModel");
 		list.add("com.sist.model.GoodsModel");
 		////// XML등록
 		Scanner scan=new Scanner(System.in);
-		System.out.println("URL 입력:");
+		System.out.print("URL 입력:");
 		String url=scan.next();
 		/////////////////// getRequestURI()
 		try
@@ -36,7 +36,10 @@ public class MainClass2 {
 				}
 			}
 		}
-		}catch(Exception ex) {}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
 	
 
 	}
