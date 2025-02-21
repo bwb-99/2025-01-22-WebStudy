@@ -141,7 +141,7 @@
       
       
       
-        <Context docBase="JSPMVCLastPorject" path="/JSPMVCLastPorject" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCLastPorject"/></Host>
+        <Context docBase="JSPMVCLastProject" path="/JSPMVCLastProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCLastProject"/></Host>
     </Engine>
   </Service>
 </Server>
