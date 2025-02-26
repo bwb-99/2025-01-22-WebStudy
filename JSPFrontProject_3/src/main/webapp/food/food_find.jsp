@@ -19,133 +19,12 @@ p{
    white-space: nowrap;
    text-overflow: ellipsis;
 }
-img:hover {
+img:hover,a:hover {
    cursor: pointer
 }
 </style>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script type="text/javascript">
-let food_list=[]
-let startPage=0
-let endPage=0
-let curpage=0
-let totalpage=0
-// 시작과 동시에 값을 읽어 온다 
-window.onload=function(){
-	let html='';
-	// axios.get() axios.post()
-	axios.get('http://localhost/JSPFrontProject_3/food/find_js.do')
-	.then((response)=>{
-		console.log(response.data)
-		food_list=response.data
-		curpage=response.data[0].curpage
-		totalpage=response.data[0].totalpage
-		startPage=response.data[0].startPage
-		endPage=response.data[0].endPage
-		
-		console.log("curpage="+curpage)
-		console.log("totalpage="+totalpage)
-		console.log("startPage="+startPage)
-		console.log("endPage="+endPage)
-		
-		food_list.map(function(vo){
-			html+='<div class="col-sm-4">'
-			     +'<div class="thumbnail">'
-			     +'<img src="'+vo.poster+'" style="width:100%" onclick="detail('+vo.fno+')">'
-			     +'<p>'+vo.name+'</p>'
-			     +'</div>'
-			     +'</div>'
-		}) 
-		let main=document.querySelector("#poster");
-		// CSS selector 
-		main.innerHTML=html
-	})
-}
-/*
- *   문서 객체 선택 => 351page
- *   document.querySelector("#fd") => id
-     => document.getElementById("id")
-     => $('#fd')
-     document.querySelector(".fd") => class
-     => document.getElementClassName("fd")
-     => $('.fd')
-     document.querySelector("div") => 태그명 
-     => document.getElementByTagName("div")
-     => $('div')
- */
-function foodFind(){
-	let addr=document.querySelector("#fd").value
-	// document.getElementById("fd")
-	if(addr.trim()=="")
-	{
-		alert("지역을 입력하세요")
-		document.querySelector("#fd").focus()
-		return
-	}
-	
-	let html='';
-	// axios.get() axios.post()
-	// .do?page=1&fd=서대문
-	// request.getParameter("page")
-	// request.getParameter("fd")
-	/*
-	   ajax({
-		 url:'',
-		 type:'POST',
-		 data:{page:1,fd:addr},
-		 success:function(response)
-		 {
-			 
-		 }
-		 
-	   })
-	   
-	   => ajax (jquery)
-	*/
-	// axios = vue , react 
-	axios.get('http://localhost/JSPFrontProject_3/food/find_js.do',{
-		params:{
-			page:1,
-			fd:addr
-		}
-	})
-	.then((response)=>{
-		console.log(response.data)
-		food_list=response.data
-		curpage=response.data[0].curpage
-		totalpage=response.data[0].totalpage
-		startPage=response.data[0].startPage
-		endPage=response.data[0].endPage
-		
-		console.log("curpage="+curpage)
-		console.log("totalpage="+totalpage)
-		console.log("startPage="+startPage)
-		console.log("endPage="+endPage)
-		
-		food_list.map(function(vo){
-			html+='<div class="col-sm-4">'
-			     +'<div class="thumbnail">'
-			     +'<img src="'+vo.poster+'" style="width:100%">'
-			     +'<p>'+vo.name+'</p>'
-			     +'</div>'
-			     +'</div>'
-		}) 
-		let main=document.querySelector("#poster");
-		// CSS selector 
-		main.innerHTML=html
-	})
-	
-}
-let detail=(fno)=>{
-	axios.get("http://localhost/JSPFrontProject_3/food/detail_js.do",{
-		params:{
-			fno:fno
-		}
-	}).then((res)=>{
-		console.log(res.data)
-	})
-}
-</script>
+<script type="text/javascript" src="food.js"></script>
 </head>
 <body>
   <div class="container">
@@ -160,7 +39,46 @@ let detail=(fno)=>{
         
       </div>
       <div class="col-sm-4" id="detail" style="display:none">
+       <table class="table">
+        <tr>
+         <td width=30% class="text-center" rowspan="8" id="poster">
+         </td>
+          <td colspan="2">
+           <h3><span id="title"></span>&nbsp<sapn id="score" style="color:orange"></sapn></h3>
+          </td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">음식종류</td>
+          <td width=55% id="type"></td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">주소</td>
+          <td width=55% id="address"></td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">전화</td>
+          <td width=55% id="phone"></td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">가격대</td>
+          <td width=55% id="price"></td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">주차</td>
+          <td width=55% id="parking"></td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">영업시간</td>
+          <td width=55% id="time"></td>
+        </tr>
+        <tr>
+          <td width=15% style="color:gray">테마</td>
+          <td width=55% id="theme"></td>
+        </tr>
+       </table>
+       <table >
        
+       </table>
       </div>
     </div>
     <div class="row" style="margin-top: 10px">
