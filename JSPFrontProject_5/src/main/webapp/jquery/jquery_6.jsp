@@ -19,7 +19,7 @@
        let btn=document.querySelector("#id")
        btn.addEventListener('click',function(){처리})
        ---- $('#id명').on('click',function(){})
-       -----------------
+       ----------------- 
  */
 $(function(){
 	$('#count').change(function(){

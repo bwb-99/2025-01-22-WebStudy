@@ -14,7 +14,7 @@
     => let / const
     => DOMScript
  */
-$(function(){
+$(function(){ 
 	//자바스크립트 => 태그 읽기 (선택자)
 	// $(선택자).함수(매개변수...)
 	// $(document).ready(function(){}) => window.onload=function

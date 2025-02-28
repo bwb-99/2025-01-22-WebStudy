@@ -42,6 +42,7 @@ $(function(){
     $('#h1').css("color","red")
     $('.h1').css("color","blue")
     $('h2').css("color","green")
+    // => 함수화
 })
 
 </script>

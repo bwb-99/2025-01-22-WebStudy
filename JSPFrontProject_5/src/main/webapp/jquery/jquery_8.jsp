@@ -42,7 +42,7 @@ $(function(){
 <body>
   <div class="container">
    <div class="row">
-    <table class="talbe">
+    <table class="table">
       <tr>
         <td class="text-right" colspan="2">
           <input type=button value="add" class="btn-xs btn-warning">
@@ -52,7 +52,7 @@ $(function(){
       <tr>
         <th width=15%>첨부파일</th>
         <td width=85%>
-          <table class= "table user-table">
+          <table class="table user-table">
           <tbody>
           
           </tbody>
