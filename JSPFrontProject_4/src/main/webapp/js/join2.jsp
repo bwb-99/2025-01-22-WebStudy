@@ -1,70 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--
-	 내장 객체 
-	 -------
-	  window  : 브라우저 자체 제어
-	  
-	  document : wriete
-	  
-	  
-	  데이터형
-	  ------
-	    Number => 형변환 / parseInt()
-	    ------ toLocalString()
-	    String
-	      length() = 문자 갯수 : 비밀번호 유효성 검사
-	      indexOf / lastIndexOf : 문자위치 찾기
-	      replace() => 문자변경
-	      split() => 문자 분리 => 배열로 저장
-	      substring() : 문자 자르기
-	      **substr(number,number) => 오라클 
-	      				   갯수
-	               시작인덱스번호 
-	      trim() : 좌우 공백 제거 
-	    Array
-	      push() => 데이터 첨부
-	      pop() => 데이터 삭제
-	      slice() => 원하는 위치의 데이터를 잘라서 새로운 배열 생성
-	      length => 데이터 갯수
-	    Data : 날짜 시간 관리
-	      let today=new Date()
-	      year : 년도 => today.getFullYear()
-	      month : 월 > today.getMonth() => 0부터
-	      date : 일 > today.getDate()
-	      day : 요일 > today.getDay()
-	      => fullcalendar
-	    Math
-	      round()=> 반올림
-	    
- --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+.container{
+ margin-top: 50px;
+}
+.row{
+  margin: opx auto;
+  width: 100%;
+}
+</style>
+<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-/*
- *  코딩 테스트 : 차량번호 임의로 등록 => 오늘 날짜 쉬는 날 여부
- 
-    이력서 통과 => 70%
-      => 면접 / 코딩테스트
-      => 테스트지
-      => 중견 업체
-         ------ 3200~3500
-
- */
- window.onload=function(){
-    	  let today=new Data()
-    	  let year=today.getFullYear()
-    	  let month=today.getMonth()+1
-    	  let date=today.getDate()
-    	  let day=today.getDay()
-    	  let strWeek=["일","월","화","수","목","금","토"]
-    	  document.write("오늘은 "+year+"년 "+month+"월 "+date+"일 "+strWeek[day]+"요일입니다.")
-    	  //자바스크립트 기초
-      }
+function postfind(){
+	new daum.Postcode({
+		oncomplete:function(data){
+			document.querySelector('#post').value=data.zonecode
+			document.querySelector('#addr1').value=data.address
+		}
+	}).open()
+}
 </script>
 </head>
+<body>
+   <div class="container">
+     <h3 class="text-center">회원가입</h3>
+     <div class="row">
+      <form name="frm">
+      <table class="table">
+       <tr>
+        <th class="text-center" width=15%>우편번호</th>
+        <td width=85%>
+         <input type=text size=7 class="input-sm" readonly id="post">
+         <input type=button value="우편번호 검색" 
+           class="btn-sm btn-success" onclick="postfind()">
+        </td>
+       </tr>
+       <tr>
+        <th class="text-center" width=15%>주소</th>
+        <td width=85%>
+         <input type=text size=50 class="input-sm" readonly id="addr1">
+        </td>
+       </tr>
+       <tr>
+        <th class="text-center" width=15%>상세주소</th>
+        <td width=85%>
+         <input type=text size=50 class="input-sm" name="addr2">
+        </td>
+       </tr>
+      </table>
+      </form>
+     </div>
+   </div>
 </body>
 </html>
