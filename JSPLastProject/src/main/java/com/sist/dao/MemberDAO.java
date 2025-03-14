@@ -42,15 +42,15 @@ public class MemberDAO {
 	   session.close();
    }
    /*
-    * <select id="memberIdCheckCount" resultType="int" parameterType="string">
-	    SELECT COUNT(*) FROM project_member
-	    WHERE id=#{id}
-	  </select>
-	  <select id="memberGetPassword" resultType="MemberVO" parameterType="string">
-	   SELECT id,pwd,name,sex,admin
-	   FROM project_member
-	   WHERE id=#{id}
-	  </select>
+    *  <select id="memberIdCheckCount" resultType="int" parameterType="string">
+		   SELECT COUNT(*) FROM project_member
+		   WHERE id=#{id}
+		  </select>
+		  <select id="memberGetPassword" resultType="MemberVO" parameterType="string">
+		   SELECT id,pwd,name,sex,admin
+		   FROM project_member
+		   WHERE id=#{id}
+		  </select>
     */
    public static MemberVO memberLogin(String id,String pwd)
    {

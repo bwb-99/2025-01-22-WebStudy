@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../food/map.css">
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services"></script>
 </head>
 <body>
 <!-- ****** Breadcumb Area Start ****** -->
@@ -144,7 +145,7 @@
 			    </div>
 			</div>
 			
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services"></script>
+			
 			<script>
 			// 마커를 담을 배열입니다
 			var markers = [];
@@ -365,86 +366,48 @@
 			</script>
                             <!-- Comment Area Start -->
                             <div class="comment_area section_padding_50 clearfix">
-                                <h4 class="mb-30">2 Comments</h4>
+                                <h4 class="mb-30">댓글()</h4>
 
                                 <ol>
-                                    <!-- Single Comment Area -->
+                                   <c:forEach>
                                     <li class="single_comment_area">
                                         <div class="comment-wrapper d-flex">
                                             <!-- Comment Meta -->
                                             <div class="comment-author">
-                                                <img src="../img/blog-img/17.jpg" alt="">
+                                                <img src="${vo.sex=='남자'?'../img/images/man.png','../}" alt="">
                                             </div>
                                             <!-- Comment Content -->
                                             <div class="comment-content">
                                                 <span class="comment-date text-muted">27 Aug 2018</span>
-                                                <h5>Brandon Kelley</h5>
-                                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                                <a href="#">Like</a>
-                                                <a class="active" href="#">Reply</a>
-                                            </div>
-                                        </div>
-                                        <ol class="children">
-                                            <li class="single_comment_area">
-                                                <div class="comment-wrapper d-flex">
-                                                    <!-- Comment Meta -->
-                                                    <div class="comment-author">
-                                                        <img src="../img/blog-img/18.jpg" alt="">
-                                                    </div>
-                                                    <!-- Comment Content -->
-                                                    <div class="comment-content">
-                                                        <span class="comment-date text-muted">27 Aug 2018</span>
-                                                        <h5>Brandon Kelley</h5>
-                                                        <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                                        <a href="#">Like</a>
-                                                        <a class="active" href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ol>
-                                    </li>
-                                    <li class="single_comment_area">
-                                        <div class="comment-wrapper d-flex">
-                                            <!-- Comment Meta -->
-                                            <div class="comment-author">
-                                                <img src="../img/blog-img/19.jpg" alt="">
-                                            </div>
-                                            <!-- Comment Content -->
-                                            <div class="comment-content">
-                                                <span class="comment-date text-muted">27 Aug 2018</span>
-                                                <h5>Brandon Kelley</h5>
-                                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                                <a href="#">Like</a>
-                                                <a class="active" href="#">Reply</a>
+                                                <h5>${rvo.name}</h5>
+                                                <p>${rvo.msg} }</p>
+                                                <a href="#" class="btn btn-outline-danger">Like</a>
+                                                <a class="btn btn-outline-warningW" href="#">Reply</a>
                                             </div>
                                         </div>
                                     </li>
+                                    </c:forEach>
                                 </ol>
                             </div>
 
                             <!-- Leave A Comment -->
+                            <c:if test="${sessionScope.id!=null }">
                             <div class="leave-comment-area section_padding_50 clearfix">
                                 <div class="comment-form">
-                                    <h4 class="mb-30">Leave A Comment</h4>
-
-                                    <!-- Comment Form -->
-                                    <form action="#" method="post">
+                                  
+                                    <form action="../reply/reply_insert.do" method="post">
+                                        
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="contact-name" placeholder="Name">
+                                            <textarea name="message" id="message" cols="70" rows="4" placeholder="Message" style="float: left"></textarea>
+                                            <input type=hidden name="type" value="1">
+                                            <input type=hidden name="type" value="1">
+                                            <button type="submit" class="btn btn-primary" style="width:100px;height: 95px;float: left">댓글쓰기</button>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="contact-email" placeholder="Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="contact-website" placeholder="Website">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn contact-btn">Post Comment</button>
+                                        
                                     </form>
                                 </div>
                             </div>
+                            </c:if>
 
                         </div>
                     </div>

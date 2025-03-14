@@ -49,6 +49,7 @@ public class MemberModel {
 	   
    }
    @RequestMapping("member/join_ok.do")
+   // MemberVO vo
    public String member_join_ok(HttpServletRequest request,
 		   HttpServletResponse response)
    {
@@ -65,24 +66,6 @@ public class MemberModel {
 	   String phone2=request.getParameter("phone2");
 	   String content=request.getParameter("content");
 	   
-	   /*
-	    * ID             NOT NULL VARCHAR2(20)  
-	   PWD            NOT NULL VARCHAR2(30)  
-	   NAME           NOT NULL VARCHAR2(51)  
-	   SEX            NOT NULL CHAR(6)       
-	   EMAIL                   VARCHAR2(100) 
-	   BIRTHDAY       NOT NULL VARCHAR2(10)  
-	   POST           NOT NULL VARCHAR2(10)  
-	   ADDRESS        NOT NULL VARCHAR2(100) 
-	   ADDRESS_DETAIL          VARCHAR2(100) 
-	   REGDATE                 DATE          
-	   COMENT                  CLOB          
-	   ADMIN                   VARCHAR2(1)  =>  n y
-	   LOGIN                   VARCHAR2(1)  => o i
-	   PHONE                   VARCHAR2(13)  
-	   AVATAR                  VARCHAR2(100) 
-	    */
-	   
 	   MemberVO vo=new MemberVO();
 	   vo.setId(id);
 	   vo.setPwd(pwd);
@@ -97,6 +80,7 @@ public class MemberModel {
 	   vo.setContent(content);
 	   
 	   MemberDAO.memberInsert(vo);
+	   
 	   return "redirect:../main/main.do";
    }
    @RequestMapping("member/login.do")
