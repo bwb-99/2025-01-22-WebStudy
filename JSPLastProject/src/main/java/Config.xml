@@ -20,7 +20,7 @@
      <typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
      <typeAlias type="com.sist.vo.NoticeVO" alias="NoticeVO"/>
      <typeAlias type="com.sist.vo.QnABoardVO" alias="QnABoardVO"/>
-     <typeAlias type="com.sist.vo.QnABoardVO" alias="ReplyVO"/>
+     <typeAlias type="com.sist.vo.ReplyVO" alias="ReplyVO"/>
    </typeAliases>
    <environments default="development">
      <environment id="development">

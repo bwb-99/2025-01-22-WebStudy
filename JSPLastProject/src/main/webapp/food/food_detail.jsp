@@ -7,7 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../food/map.css">
+<style type="text/css">
+a.updates{
+	cursor:pointer;
+}
+</style>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services"></script>
+<script type="text/javascript" src="https:code.jquery.com"></script>
+<script type="text/javascript">
+let bClick=false
+$(function(){
+	$('.update').click(function(){
+		let rno=$(this).attr("data-rno")
+		$('.ups').hide()
+		if(bClick==false)
+		{
+			$(this).attr("data-rno")
+			$('')
+		}
+	})
+	
+}}
+</script>
 </head>
 <body>
 <!-- ****** Breadcumb Area Start ****** -->
@@ -115,10 +136,14 @@
           <c:if test="${sessionScope.id!=null }">
           <a href="#" 
              class="btn btn-sm btn-success">좋아요</a>
-          <a href="#" 
+            <c:if test="${rcount==0 }">
+          <a href="../jjim/jjim_insert.do?fno=${vo.fno}&type=1" 
              class="btn btn-sm btn-info">찜하기</a>
+            </c:if>
+            <c:if test="${rcount!=0 }">
           <a href="#" 
              class="btn btn-sm btn-danger">예약하기</a>
+            </c:if>
           </c:if>
           <a href="javascript:history.back()" 
              class="btn btn-sm btn-primary">목록</a>
@@ -366,23 +391,36 @@
 			</script>
                             <!-- Comment Area Start -->
                             <div class="comment_area section_padding_50 clearfix">
-                                <h4 class="mb-30">댓글()</h4>
+                                <h4 class="mb-30">댓글(${count })</h4>
 
                                 <ol>
-                                   <c:forEach>
+                                   <c:forEach var="rvo" items="${rList }">
                                     <li class="single_comment_area">
                                         <div class="comment-wrapper d-flex">
                                             <!-- Comment Meta -->
                                             <div class="comment-author">
-                                                <img src="${vo.sex=='남자'?'../img/images/man.png','../}" alt="">
+                                                <c:if test="${rvo.sex=='남자' }">
+                                                 <img src="../img/images/man.png" alt="">
+                                                </c:if>
+                                                <c:if test="${rvo.sex=='여자' }">
+                                                 <img src="../img/images/woman.png" alt="">
+                                                </c:if>
                                             </div>
                                             <!-- Comment Content -->
                                             <div class="comment-content">
-                                                <span class="comment-date text-muted">27 Aug 2018</span>
-                                                <h5>${rvo.name}</h5>
-                                                <p>${rvo.msg} }</p>
-                                                <a href="#" class="btn btn-outline-danger">Like</a>
-                                                <a class="btn btn-outline-warningW" href="#">Reply</a>
+                                                <span class="comment-date text-muted">${rvo.dbday}</span>
+                                                <h5>${rvo.name }</h5>
+                                                <p>${rvo.msg }</p>
+                                                <c:if test="${sessionScope.id!=null }">
+                                                   <a href="#" class="active">좋아요</a>
+                                                   <a href="#" class="active">댓글</a>
+                                                   <c:if test="${sessionScope.id==rvo.id }">
+                                                     <a class="active updates" data-rno="${rvo.cno}">수정</a>
+                                                     <a href="../reply/reply_delete.do?cno=${rvo.cno }&rno=${rvo.rno}&type=2" class="active">삭제</a>
+                                                   </c:if>
+                                                </c:if>
+                                         
+                                                
                                             </div>
                                         </div>
                                     </li>
@@ -393,14 +431,14 @@
                             <!-- Leave A Comment -->
                             <c:if test="${sessionScope.id!=null }">
                             <div class="leave-comment-area section_padding_50 clearfix">
-                                <div class="comment-form">
+                                <div class="comment-form" style="display:none" id="up${rvo.cno }">
                                   
                                     <form action="../reply/reply_insert.do" method="post">
                                         
                                         <div class="form-group">
-                                            <textarea name="message" id="message" cols="70" rows="4" placeholder="Message" style="float: left"></textarea>
+                                            <textarea name="msg" id="msg" cols="70" rows="4" placeholder="Message" style="float: left" required></textarea>
                                             <input type=hidden name="type" value="1">
-                                            <input type=hidden name="type" value="1">
+                                            <input type=hidden name="rno" value="${vo.fno }">
                                             <button type="submit" class="btn btn-primary" style="width:100px;height: 95px;float: left">댓글쓰기</button>
                                         </div>
                                         
@@ -408,7 +446,20 @@
                                 </div>
                             </div>
                             </c:if>
-
+							<div class="comment-form">
+                                  
+                                    <form action="../reply/reply_update.do" method="post">
+                                        
+                                        <div class="form-group">
+                                            <textarea name="msg" id="msg" cols="70" rows="3" placeholder="Message" style="float: left" required>${rvo.cno }</textarea>
+                                            <input type=hidden name="type" value="1">
+                                            <input type=hidden name="rno" value="${vo.fno }">
+                                            <input type=hidden name="cno" value="${rvo.cno} ">
+                                            <button type="submit" class="btn btn-primary" style="width:100px;height: 85px;float: left">댓글수정</button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
                         </div>
                     </div>
                 </div>

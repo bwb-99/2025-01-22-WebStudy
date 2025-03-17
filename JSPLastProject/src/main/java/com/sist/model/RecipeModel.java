@@ -139,16 +139,15 @@ public class RecipeModel {
     	 *   <c:forEach var="make" item="${mList}">
     	 *    
     	 */
+    	
     	ReplyVO rvo=new ReplyVO();
-  	  rvo.setRno(Integer.parseInt(no));
-  	  rvo.setType(2);
-  	  List<ReplyVO> list=ReplyDAO.replyListData(rvo);
-  	  int count=ReplyDAO.replyCount(vo);
-  	  request.setAttribute("count", count);
-  	  request.setAttribute("rList", list);
-  	  
-  	  request.setAttribute("main_jsp", "../food/food_detail.jsp");
-  	  return "../main/main.jsp";
+  	    rvo.setRno(Integer.parseInt(no));
+  	    rvo.setType(2);
+  	    List<ReplyVO> list=ReplyDAO.replyListData(rvo);
+  	    int count=ReplyDAO.replyCount(rvo);
+  	    request.setAttribute("count", count);
+  	    request.setAttribute("rList", list);
+  	    
     	request.setAttribute("vo", vo);
     	request.setAttribute("mList", mList);
     	request.setAttribute("iList", iList);
