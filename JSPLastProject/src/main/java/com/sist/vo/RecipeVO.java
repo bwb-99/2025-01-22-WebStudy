@@ -8,11 +8,10 @@ import lombok.Data;
 	POSTER NOT NULL VARCHAR2(260)  
 	CHEF   NOT NULL VARCHAR2(500)  
 	LINK            VARCHAR2(300)  
-	HIT             NUMBER  
+	HIT             NUMBER
  */
 @Data
 public class RecipeVO {
-	private int no,hit,likecount,replycount;
-	private String title,poster,chef;
-
+   private int no,hit,likecount,replycount;
+   private String title,poster,chef;
 }
