@@ -70,6 +70,18 @@ $(function(){
 			return
 		}
 		
+		let phone1 = $('select[name="phone1"]').val();
+        let phone2 = $('input[name="phone2"]').val();
+        let phonePattern = /^\d{4}-\d{4}$/; // 정규식: 0000-0000 형식
+
+        if (!phonePattern.test(phone2)) {
+            $('#phoneError').text("0000-0000 형식에 맞게 출력해주세요."); // 웹페이지에 경고 메시지 출력
+            $('input[name="phone2"]').focus();
+            return;
+        } else {
+            $('#phoneError').text(""); // 형식이 맞으면 경고 메시지 제거
+        }
+		
 		$('#frm').submit()
 	})
 })
@@ -184,7 +196,8 @@ $(function(){
                 <select name="phone1" class="form-control-sm">
                   <option>010</option>
                 </select>
-                <input type=text name="phone2" size=15 class="form-control-sm">
+                <input type=text name="phone2" size=15 class="form-control-sm" placeholder="0000-0000 형식으로 입력">
+              	<span id="phoneError" style="color: red; font-size: 12px;"></span>
                </td>
               </tr>
               

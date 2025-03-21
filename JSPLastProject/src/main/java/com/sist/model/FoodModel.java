@@ -6,6 +6,7 @@ import com.sist.controller.RequestMapping;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.PrintWriter;
 // JSP (디자인) => Model => DAO => Model => JSP
@@ -18,17 +19,16 @@ import org.json.simple.JSONObject;
 import com.sist.vo.*;
 import com.sist.dao.*;
 @Controller
-/*  
- *        JSP.do
+/*
+ *          JSP .do
  *           |
- *    DispathcherServlet (Controoler) ***
+ *   DispatcherServlet (Controller) ***
  *           |
- *        (Model) ***** DAO
+ *         (Model) ******* DAO
  *           | request
- *    DispatcherServlet  ***
+ *   DispatcherServlet  ***
  *           | request
- *         (JSP) 
- * 
+ *          (JSP) 
  */
 public class FoodModel {
   @RequestMapping("food/food_list.do")
@@ -93,7 +93,7 @@ public class FoodModel {
 	  addr2=addr1.substring(0,addr2.indexOf(" ")+1);
 	  request.setAttribute("addr", addr2);
 	  request.setAttribute("vo", vo);
-	  // 댓글
+	  /////// 댓글
 	  ReplyVO rvo=new ReplyVO();
 	  rvo.setRno(Integer.parseInt(fno));
 	  rvo.setType(1);
@@ -102,6 +102,21 @@ public class FoodModel {
 	  request.setAttribute("count", count);
 	  request.setAttribute("rList", list);
 	  
+	  
+	  
+	  JjimVO jvo=new JjimVO();
+	  jvo.setRno(Integer.parseInt(fno));
+	  jvo.setType(1);
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  jvo.setId(id);
+	  
+	  if(id!=null)
+	  {
+		  int jCount=JjimDAO.jjimCheckCount(jvo);
+		  request.setAttribute("jCount", jCount);
+	  }
+	  ////////////////////////////////////////
 	  request.setAttribute("main_jsp", "../food/food_detail.jsp");
 	  return "../main/main.jsp";
   }

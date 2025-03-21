@@ -128,7 +128,10 @@ public class DispatcherServlet extends HttpServlet {
 				
 				
 			}
-		}catch(Exception ex){}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 		
 	}
 

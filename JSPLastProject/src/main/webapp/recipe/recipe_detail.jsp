@@ -1,34 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<style type="text/css">
-a.updates{
-	cursor:pointer;
-}
-</style>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services"></script>
-<script type="text/javascript" src="https:code.jquery.com"></script>
-<script type="text/javascript">
-let bClick=false
-$(function(){
-	$('.update').click(function(){
-		let rno=$(this).attr("data-rno")
-		$('.ups').hide()
-		if(bClick==false)
-		{
-			$(this).attr("data-rno")
-			$('')
-		}
-	})
-	
-}}
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style type="text/css">
+a.updates{
+  cursor: pointer;
+}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let bClick=false
+$(function(){
+	$('.updates').click(function(){
+		let rno=$(this).attr("data-rno")
+		$('.ups').hide()
+		$(".updates").text("수정")
+		if(bClick===false)
+		{
+			$(this).text("취소")
+			$('#up'+rno).show()
+			bClick=true
+		}
+		else
+		{
+			$(this).text("수정")
+			$('#up'+rno).hide()
+			bClick=false
+		}
+	})
+})
+</script>
 </head>
 <body>
 <div class="breadcumb-area" style="background-image: url(../img/bg-img/breadcumb.jpg);">
@@ -160,35 +165,36 @@ $(function(){
                                                 </c:if>
                                             </div>
                                             <!-- Comment Content -->
-                                            <a href="#" class="active">댓글</a>
-                                            <c:if test="${sessionScope.id==rvo.id }">
-                                              <a class="active updates" data-rno="${rvo.cno}">수정</a>
-                                              <a href="../reply/reply_delete.do?cno=${rvo.cno }&rno=${rvo.rno}&type=1" class="active">삭제</a>
-                                            </c:if>
-                                         
-                                     </div>
-                                 </div>
-                             </li>
-                             </c:forEach>
-                         </ol>
-                     </div>
-
-                     <!-- Leave A Comment -->
-                     <c:if test="${sessionScope.id!=null }">
-                     <div class="leave-comment-area section_padding_50 clearfix">
-                         <div class="comment-form" style="display:none" id="up${rvo.cno }">
-                           
-                             <form action="../reply/reply_insert.do" method="post">
-                                 
-                                 <div class="form-group">
-                                     <textarea name="msg" id="msg" cols="70" rows="4" placeholder="Message" style="float: left" required></textarea>
-                                     <input type=hidden name="type" value="1">
-                                     <input type=hidden name="rno" value="${vo.fno }">
-                                     <button type="submit" class="btn btn-primary" style="width:100px;height: 95px;float: left">댓글쓰기</button>
-                                 </div>
-                                 
-                             </form>
-                         </div>
+                                            <div class="comment-content">
+                                                <span class="comment-date text-muted">${rvo.dbday}</span>
+                                                <h5>${rvo.name }</h5>
+                                                <p>${rvo.msg }</p>
+                                                <c:if test="${sessionScope.id!=null }">
+                                                   <a href="#" class="active">좋아요</a>
+                                                   <a href="#" class="active">댓글</a>
+                                                   <c:if test="${sessionScope.id==rvo.id }">
+                                                     <a class="active updates" data-rno="${rvo.cno }">수정</a>
+                                                     <a href="../reply/reply_delete.do?cno=${rvo.cno }&rno=${rvo.rno}&type=1" class="active">삭제</a>
+                                                   </c:if>
+                                                </c:if>
+                                                
+                                                <div class="comment-form ups" style="display:none" id="up${rvo.cno }">
+                                  
+				                                    <form action="../reply/reply_update.do" method="post">
+				                                        
+				                                        <div class="form-group">
+				                                            <textarea name="msg" id="msg" cols="50" rows="3" placeholder="Message" style="float: left" required>${rvo.msg }</textarea>
+				                                            <input type=hidden name="type" value="2">
+				                                            <input type=hidden name="rno" value="${vo.no }">
+				                                            <input type=hidden name="cno" value="${rvo.cno }">
+				                                            <button type="submit" class="btn btn-primary" style="width:100px;height: 85px;float: left">댓글수정</button>
+				                                        </div>
+				                                        
+				                                    </form>
+				                                </div>
+                                                
+                                            </div>
+                                        </div>
                                     </li>
                                     </c:forEach>
                                 </ol>
