@@ -7,7 +7,7 @@ public class InsertModel implements Model {
 	@Override
 	public String execute(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		request.setAttribute("msg", "답현형 게시판 데이터 추가");
+		request.setAttribute("msg", "답변형 게시판 데이터 추가");
 		return "board/insert.jsp";
 	}
 

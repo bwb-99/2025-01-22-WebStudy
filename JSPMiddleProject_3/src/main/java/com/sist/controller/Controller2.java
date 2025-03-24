@@ -10,13 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 import com.sist.model2.*;
-
 @WebServlet("/Controller2")
 public class Controller2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Map clsMap=new HashMap();
-	
-	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
@@ -24,18 +21,18 @@ public class Controller2 extends HttpServlet {
 		clsMap.put("insert", new InsertModel());
 		clsMap.put("update", new UpdateModel());
 		clsMap.put("delete", new DeleteModel());
-		//xml  등록
+		// xml에 등록 
 	}
 
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 사용자 요청
+		// TODO Auto-generated method stub
+		// 사용자 요청 
 		String cmd=request.getParameter("cmd");
 		Model model=(Model)clsMap.get(cmd);
 		String jsp=model.execute(request);
-		RequestDispatcher rd=request.getRequestDispatcher(jsp);
+		RequestDispatcher rd=
+				  request.getRequestDispatcher(jsp);
 		rd.forward(request, response);
-		
 	}
 
 }
